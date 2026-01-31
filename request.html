@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Global 3 Concept Ltd - Request Service</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+<style>
+body {
+    margin:0;
+    font-family: 'Roboto', sans-serif;
+    background:#1E40AF; /* Royal Blue background */
+    color:white;
+}
+a { text-decoration:none; color:#00BFFF; }
+header { display:flex; justify-content:space-between; align-items:center; padding:20px 40px; background:#0B1D4D; }
+header img { height:60px; border-radius:50%; }
+nav a { margin-left:20px; font-weight:bold; }
+.section { padding:60px 30px; text-align:center; background:#0B1D4D; }
+.section h2 { margin-bottom:40px; font-size:32px; color:#D4AF37; font-family:'Montserrat',sans-serif; }
+form { max-width:600px; margin:0 auto; background:#1E2B50; padding:30px; border-radius:10px; text-align:left; }
+form label { display:block; margin-bottom:5px; font-weight:bold; }
+form input, form select, form textarea { width:100%; padding:10px; margin-bottom:20px; border-radius:5px; border:none; font-size:16px; }
+form textarea { resize:vertical; }
+.btn { display:inline-block; padding:12px 25px; background:#D4AF37; color:black; font-weight:bold; border-radius:5px; font-family:'Montserrat',sans-serif; cursor:pointer; }
+footer { text-align:center; padding:20px; background:#0B1D4D; }
+.dynamic-field { display:none; margin-bottom:20px; }
+#thankYouMessage { display:none; text-align:center; margin-top:20px; }
+#thankYouMessage .btn {
+    background-color: #25D366; /* WhatsApp green */
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    padding: 12px 25px;
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+}
+#thankYouMessage .btn:hover { background-color: #1ebe5d; }
+</style>
+</head>
+<body>
+
+<header>
+    <img src="assets/logo.png" alt="Global 3 Concept Ltd Logo">
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="coaching.html">Services</a>
+        <a href="request.html">Get Started</a>
+    </nav>
+</header>
+
+<section class="section">
+    <h2>Request a Service</h2>
+    <form id="requestForm" method="POST" enctype="multipart/form-data">
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Your Full Name" required>
+
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Your Email" required>
+
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" name="phone" placeholder="Your Phone Number" required>
+
+        <label for="service">Select Service</label>
+        <select id="service" name="service" required>
+            <option value="">--Choose a Service--</option>
+            <option value="entrepreneur-coaching">Entrepreneur Coaching / Business Coaching</option>
+            <option value="business-consultancy">Business Consultancy</option>
+            <option value="cac-registration">CAC Registration & Modifications</option>
+            <option value="scuml-processing">SCUML Processing</option>
+            <option value="tin-generation">TIN Generating</option>
+            <option value="trademarks">Trademarks</option>
+            <option value="export-license">Export Licence</option>
+            <option value="nin-modifications">NIN Modifications</option>
+            <option value="passport-processing">International Passport Processing</option>
+            <option value="business-branding">Business Branding</option>
+            <option value="graphics-design">Graphics Design</option>
+            <option value="advert-video">Advert Video Generation & Video Editing</option>
+            <option value="facebook-ads">Facebook & Instagram Ads</option>
+            <option value="google-ads">Google Ads / Google Placement</option>
+            <option value="tiktok-ads">TikTok Ads</option>
+            <option value="linkedin-ads">LinkedIn Ads</option>
+            <option value="twitter-ads">Twitter Ads</option>
+            <option value="social-media-consultancy">Social Media Consultancy</option>
+            <option value="website-development">Website Development</option>
+        </select>
+
+        <div class="dynamic-field" id="websiteDetails">
+            <label for="domain">Domain Name (if applicable)</label>
+            <input type="text" id="domain" name="domain" placeholder="example.com">
+
+            <label for="hosting">Hosting Details</label>
+            <input type="text" id="hosting" name="hosting" placeholder="Do you have hosting?">
+
+            <label for="files">Upload Files (optional)</label>
+            <input type="file" id="files" name="files" multiple>
+        </div>
+
+        <label for="details">Project Details / Message</label>
+        <textarea id="details" name="details" rows="5" placeholder="Describe your project or request" required></textarea>
+
+        <button type="submit" class="btn">Submit Request</button>
+    </form>
+
+<div id="thankYouMessage" style="display:none; margin-top:20px; padding:20px; background:#0B1D4D; border-radius:8px; text-align:center;">
+    <h3>Thank you for your request!</h3>
+    <p>We have received your details. Click below to chat with us instantly on WhatsApp.</p>
+    <a href="https://wa.me/2349023125118" target="_blank" style="display:inline-block; margin-top:10px; padding:10px 20px; background:#25D366; color:white; border-radius:5px; text-decoration:none;">
+        Chat on WhatsApp
+    </a>
+</div>
+</section>
+
+<footer>
+    © 2026 Global 3 Concept Ltd. All rights reserved.<br>
+     global3concept29@gmail.com
+</footer>
+
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script>
+(function(){
+    emailjs.init("5FFnsHM5QfuxhrS5Y"); // Your Public API Key
+})();
+
+// Show additional fields if Website Development is selected
+document.getElementById('service').addEventListener('change', function() {
+    var websiteFields = document.getElementById('websiteDetails');
+    if(this.value === 'website-development'){
+        websiteFields.style.display = 'block';
+    } else {
+        websiteFields.style.display = 'none';
+    }
+});
+
+// Handle form submission with EmailJS
+document.getElementById('requestForm').addEventListener('submit', function(e){
+    e.preventDefault(); // prevent default form submission
+
+    emailjs.sendForm('service_0fzjdwc', 'template_dg4bih9', this)
+        .then(function(){
+            document.getElementById('thankYouMessage').style.display = 'block';
+            document.getElementById('requestForm').reset();
+        }, function(error){
+            alert('Oops! Something went wrong. Please try again.');
+            console.log(error);
+        });
+});
+</script>
+<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>
